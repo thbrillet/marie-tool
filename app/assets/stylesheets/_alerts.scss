@@ -1,0 +1,24 @@
+.alert,
+.notice {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  pointer-events: none;
+  animation: fadeOutAlert 6s forwards;
+  border-radius: 5px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  margin-left: 20px;
+}
+
+.alert {
+  background-color: $red;
+}
+
+.notice {
+  background-color: $green;
+}
+@keyframes fadeOutAlert {
+  0%    {opacity: 100%;}
+  66%   {opacity: 100%;}
+  100%  {opacity: 0%;}
+}
