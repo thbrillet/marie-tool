@@ -171,6 +171,26 @@
   .form-submit{
     display: none !important;
   }
+
+  .devise-wrapper {
+    overflow: scroll;
+    .devise-container {
+      width: 90% !important;
+      flex-direction: column;
+      height: auto !important;
+      .devise-container-left {
+        order: 1;
+        width: 100%;
+        margin-bottom: 40px;
+        p {
+          text-align: left;
+        }
+      }
+      .devise-container-right {
+        width: 100%;
+      }
+    }
+  }
 }
 
 @keyframes slideDown{
