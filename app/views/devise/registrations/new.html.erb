@@ -1,0 +1,45 @@
+<div class="devise-wrapper">
+  <div class="devise-container">
+    <div class="devise-container-left">
+      <h2>Création d'un nouveau compte</h2>
+
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <div class="field">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :password, "Mot de passe" %>
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> caractères au minimum)</em>
+          <% end %><br />
+          <%= f.password_field :password, autocomplete: "new-password" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :password_confirmation, "Confirmez le mot de passe" %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "Créer le compte" %>
+        </div>
+      <% end %>
+
+      <h4>Pourquoi est-ce que je dois me créer un compte avant de commander ?</h4>
+      <p>La création d'un compte client nous permet de pouvoir facilement suivre vos commandes et d'avoir accès à vos informations de contact, en cas de soucis ou s'il nous manque des informations.</p>
+      <p class="txt-bold">Rassurez-vous, vos informations de contact ne seront pas utilisées pour des communications promotionnelles ! ;)</p>
+
+      <div class="devise-links">
+        <p>Vous n'avez pas encore de compte ?</p>
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+    <div class="devise-container-right">
+      <%= image_tag("authentication.svg") %>
+    </div>
+  </div>
+</div>

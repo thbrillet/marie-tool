@@ -1,0 +1,162 @@
+<div class="tapbar-wrapper">
+  <div class="tapbar-container">
+    <div style="display: flex">
+      <a href="tel:0770030540" style="margin-right: 10px;"><i class="fas fa-phone icon-sm"></i></a>
+      <a href="mailto:mariearnaud.am@gmail.com"><i class="far fa-envelope icon-sm"></i></a>
+    </div>
+    <button id="btn-to-cart--mobile"><i class="fas fa-shopping-cart icon-blanc icon-sm"></i> Voir mon panier</button>
+  </div>
+</div>
+<div class="recettes--wrapper">
+  <div class="recettes--container">
+    <div class="recettes--top">
+      <div class="recettes--menu recettes--menu-desktop">
+        <input type="checkbox" name="menu" class="checkbox-to-hide" id="menu" checked>
+        <label for="menu" class="left--zones-filter"><i class="far fa-comment"></i></label>
+      </div>
+      <div class="recettes--menu-items">
+        <h4>Pour me contacter :</h4>
+        <a href="tel:0600000000"><i class="fas fa-phone icon-xs icon-mauve"></i> 07 70 03 05 40</a>
+        <a href="mailto:mariearnaud.am@gmail.com"><i class="fas fa-laptop icon-xs icon-mauve"></i> mariearnaud.am@gmail.com</a>
+      </div>
+      <h2>Créez votre commande !</h2>
+      <div class="filters--title"><i class="far fa-plus icon-blanc icon-sm icon-to-rotate"></i>Filtres</div>
+      <div class="recettes--filters">
+        <div class="filters-zone">
+          <p style="margin-top: 0;">Filtrez par zone du corps :</p>
+          <input type="radio" name="zone" class="radio-filter-zone checkbox-to-hide" id="Tout-zone" value="Tout-zone" checked>
+          <label for="Tout-zone" class="left--zones-filter">Tout afficher</label>
+          <input type="radio" name="zone" class="radio-filter-zone checkbox-to-hide" id="Cheveux" value="Cheveux">
+          <label for="Cheveux" class="left--zones-filter">Cheveux</label>
+          <input type="radio" name="zone" class="radio-filter-zone checkbox-to-hide" id="Visage" value="Visage">
+          <label for="Visage" class="left--zones-filter">Visage</label>
+          <input type="radio" name="zone" class="radio-filter-zone checkbox-to-hide" id="Corps" value="Corps">
+          <label for="Corps" class="left--zones-filter">Corps</label>
+          <input type="radio" name="zone" class="radio-filter-zone checkbox-to-hide" id="Mains" value="Mains">
+          <label for="Mains" class="left--zones-filter">Mains</label>
+        </div>
+        <div class="filters-usage">
+          <p>Filtrez par bienfait :</p>
+          <input type="radio" name="usage" class="radio-filter-usage checkbox-to-hide" id="Tout-usage" value="Tout-usage" checked>
+          <label for="Tout-usage" class="left--zones-filter">Tout afficher</label>
+          <input type="radio" name="usage" class="radio-filter-usage checkbox-to-hide" id="Hydratant" value="Hydratant">
+          <label for="Hydratant" class="left--products-usage">Hydratant</label>
+          <input type="radio" name="usage" class="radio-filter-usage checkbox-to-hide" id="Exfoliant" value="Exfoliant">
+          <label for="Exfoliant" class="left--products-usage">Exfoliant</label>
+          <input type="radio" name="usage" class="radio-filter-usage checkbox-to-hide" id="Nourrisant" value="Nourrisant">
+          <label for="Nourrisant" class="left--products-usage">Nourrisant</label>
+          <input type="radio" name="usage" class="radio-filter-usage checkbox-to-hide" id="Lavant" value="Lavant">
+          <label for="Lavant" class="left--products-usage">Lavant</label>
+          <input type="radio" name="usage" class="radio-filter-usage checkbox-to-hide" id="Apaisant" value="Apaisant">
+          <label for="Apaisant" class="left--products-usage">Apaisant</label>
+          <input type="radio" name="usage" class="radio-filter-usage checkbox-to-hide" id="Purifiant" value="Purifiant">
+          <label for="Purifiant" class="left--products-usage">Purifiant</label>
+        </div>
+      </div>
+    </div>
+    <div class="recettes--list">
+      <div class="recettes--list-container">
+        <% @recettes.each do |recette|%>
+          <div class="products-list--product Tout-zone Tout-usage <%= recette.zone.delete('[').delete(']').delete('"').delete(',') %> <%= recette.usage.delete('[').delete(']').delete('"').delete(',') %>">
+            <div class="recette-name-tags">
+              <span><%= recette.name %></span>
+              <div class="recette-tag">
+                <%= recette.zone.delete('[').delete(']').delete('"').delete(',') %>
+              </div>
+              <div class="recette-tag">
+                <%= recette.usage.delete('[').delete(']').delete('"').delete(',') %>
+              </div>
+            </div>
+            <div class="product--infos">
+              <div class="product---infos-qtt">
+                <input class="product product-quantity-input" type="number" name="<%= recette.name %>" value="0" min="0" max="10" title="<%= recette.price %>">
+                <div class="product---infos-minus">
+                  <i class="far fa-minus"></i>
+                </div>
+                <div class="product---infos-qtt-value">0</div>
+                <div class="product---infos-plus">
+                  <i class="far fa-plus"></i>
+                </div>
+                <div class="product---infos-confirm">
+                  <i class="far fa-check"></i>
+                </div>
+              </div>
+              <div class="product---infos-add">
+                <i class="fas fa-cart-plus icon-sm icon-blanc"></i>
+              </div>
+              <div style="display: flex;align-items: center;">
+                <div class="product---infos-price"><%= recette.price %> €</div>
+                <div class="product---infos-oncart"></div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <button class="form-submit"><i class="fas fa-shopping-cart icon-blanc icon-sm"></i> Voir mon panier</button>
+    </div>
+  </div
+></div>
+<div class="popup">
+  <div class="popup-bg"></div>
+  <div class="order-container">
+    <div class="close-cart"><i class="far fa-times icon-sm icon-blanc"></i></div>
+    <div class="elements-to-hide">
+      <div class="cart-image">
+        <%= image_tag("almost_done.svg") %>
+      </div>
+      <h2><i class="far fa-shopping-cart icon-mauve icon-lg"></i> Articles dans mon panier :</h2>
+      <div class="order-products"></div>
+      <div class="contact-form">
+        <h2><i class="far fa-cash-register icon-mauve icon-lg"></i> Passer commande</h2>
+        <h4>On y est presque ! Pour passer commande, il vous reste à renseigner les champs suivants :</h4>
+        <label for="name">Nom</label>
+        <input id="name" type="text" class="mandatory">
+        <label for="firstname">Prénom</label>
+        <input id="firstname" type="text" class="mandatory">
+        <label for="email">Email</label>
+        <input id="email" type="email" class="mandatory" placeholder="xxx@xxx.xx">
+        <label for="phone">Téléphone <em>(Optionnel)</em></label>
+        <input id="phone" type="phone" placeholder="06 00 00 00 00"class="mask-tel">
+        <label for="allergies">Allergies <em>(Optionnel)</em></label>
+        <input id="allergies" type="text">
+        <label for="commentaires">Commentaires <em>(Optionnel)</em></label>
+        <textarea id="commentaires"></textarea>
+        <h4 style="padding: 20px 0 0 0">Mode de livraison :</h4>
+        <input type="radio" name="livraison" class="checkbox-to-hide" id="livraison-poste" checked>
+        <label for="livraison-poste" class="left--products-usage"><i class="fal fa-shipping-fast icon-white icon-xs"></i> Livraison La Poste</label>
+        <input type="radio" name="livraison" class="checkbox-to-hide" id="livraison-remise">
+        <label for="livraison-remise" class="left--products-usage"><i class="fal fa-hand-holding-box icon-white icon-xs"></i> Remise en mains propres</label>
+        <div class="form-livraison">
+          <label for="address">Adresse</label>
+          <input id="address" type="text" class="mandatory-if">
+          <label for="cp">Code postal</label>
+          <input id="cp" type="text" class="mandatory-if mask-cp">
+          <label for="city">Ville</label>
+          <input id="city" type="text" class="mandatory-if">
+        </div>
+        <div class="form-remise">
+          <h4 style="padding: 20px 0 0 0">Pour la remise en mains propres, je reviendrai vers vous pour convenir d'un rendez-vous ;)</h4>
+        </div>
+        <div class="cart-image" style="margin: 60px 0 20px 0;">
+          <%= image_tag("purchase_complete.svg") %>
+        </div>
+        <div class="warning">
+          Attention : Il reste encore des champs à remplir !
+        </div>
+        <div class="actions">
+          <input type="submit" id="sumbit-order"></div>
+      </div>
+    </div>
+    <div class="loader-container">
+      <h4>Et hop ! On prépare votre commande... <br>Ça ne prendra que quelques secondes !</h4>
+      <div class="loader"></div>
+    </div>
+    <div class="thanks">
+      <div class="cart-image" style="margin: 60px 0 20px 0;">
+        <%= image_tag("working.svg") %>
+      </div>
+      <h2 style="padding: 20px 0 0 0">Merci pour votre commande</h2>
+      <h4 style="padding: 20px 0 0 0">Je vais me mettre à la préparation de vos produits de ce pas !</h4>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,89 @@
+.devise-wrapper{
+  background-color: rgb(245,245,245);
+  height: 100vh;
+  width: 100vw;
+  padding: 5vh 0;
+  box-sizing: border-box;
+  .devise-container{
+    width: 1100px;
+    margin: 0 auto;
+    height: 90vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+
+
+.devise-container-left{
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  width: 500px;
+  padding: 40px;
+  box-sizing: border-box;
+  h2{
+    padding-bottom: 20px;
+  }
+  label{
+    font-weight: 300;
+    color: rgb(50,50,50);
+    margin-top: 20px;
+    display: inline-block;
+  }
+  input{
+    width: 100%;
+    border-radius: 5px;
+    border: solid 1px rgb(200,200,200);
+    background-color: white;
+    padding: 10px;
+    margin: 5px 0;
+    box-sizing: border-box;
+  }
+  .actions{
+    input{
+      background-color: $main-color;
+      color: white;
+      border: none;
+      padding: 10px;
+      box-shadow: none;
+      margin: 20px 0;
+      width: 100%;
+      cursor: pointer;
+      transition: .3s;
+      font-weight: 900;
+      &:hover{
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        transform: scale(1.02);
+        transition: .3s;
+      }
+    }
+  }
+  em{
+    color: $main-color;
+    font-size: 14px;
+  }
+}
+.devise-container-right{
+  width: 500px;
+  padding: 40px;
+  box-sizing: border-box;
+  img{
+    width: 100%;
+  }
+}
+.devise-links{
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #E7E6F6;
+  margin-top: 20px;
+  a{
+    color: $main-color;
+    text-decoration: none;
+    font-weight: bold;
+  }
+}
+
+.devise-checkbox input{
+  width: auto;
+}

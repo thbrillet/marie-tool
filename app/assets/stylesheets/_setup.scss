@@ -1,0 +1,64 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+body {
+  height: 100vh;
+  overflow: hidden;
+}
+a{
+  text-decoration: none;
+}
+h2{
+  color: $main-color;
+  padding-bottom: 20px;
+  font-weight: 900;
+}
+h4{
+  color: $main-color;
+  padding-bottom: 20px;
+  font-weight: 600;
+}
+p{
+  text-align: justify;
+  font-weight: 300;
+  color: rgb(50,50,50);
+  padding-bottom: 5px;
+}
+.txt-bold{
+  font-weight: bold;
+}
+.notice{
+  background-color: #a0cc78;
+  color: white;
+  padding: 0;
+}
+.alert{
+  background-color: #da4302;
+  color: white;
+  padding: 0;
+}
+.icon-mauve{
+  color: $main-color;
+  padding-right: 10px;
+}
+
+.icon-blanc{
+  color: white;
+  padding-right: 10px;
+}
+.icon-sm{
+  font-size: 16px;
+}
+.icon-sm{
+  font-size: 18px;
+}
+.icon-lg{
+  font-size: 24px;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0}
+  to {opacity: 1}
+}

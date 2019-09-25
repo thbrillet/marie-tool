@@ -1,0 +1,374 @@
+// This is a manifest file that'll be compiled into application.js, which will include all the files
+// listed below.
+//
+// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, or any plugin's
+// vendor/assets/javascripts directory can be referenced here using a relative path.
+//
+// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
+// compiled file. JavaScript code in this file should be added after the last require_* statement.
+//
+// Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
+// about supported directives.
+//
+//= require rails-ujs
+//= require activestorage
+//= require turbolinks
+//= require_tree .
+//= require jquery
+//= require jquery_ujs
+//= require jquery.inputmask
+//= require jquery.inputmask.extensions
+//= require jquery.inputmask.numeric.extensions
+//= require jquery.inputmask.date.extensions
+
+function DomLoadedCM() {
+  document.addEventListener("DOMContentLoaded", function(event) {
+    console.log('DOM loaded');
+    recettesFilters();
+    addProductsToCart();
+    showAddressInfos();
+    showContactInfos();
+    showHideFiltersMobile();
+    showQuantitySelector();
+  });
+};
+
+function showQuantitySelector() {
+  var products = document.querySelectorAll('.products-list--product');
+  products.forEach(function(product){
+    var productSelector = product.querySelector('.product---infos-qtt');
+    var productAdd = product.querySelector('.product---infos-add');
+    var productMinus = product.querySelector('.product---infos-minus');
+    var productPlus = product.querySelector('.product---infos-plus');
+    var productConfirm = product.querySelector('.product---infos-confirm');
+    var input = product.querySelector('.product-quantity-input');
+    var quantityValue = product.querySelector('.product---infos-qtt-value');
+    var onCart = product.querySelector('.product---infos-oncart');
+
+    productAdd.addEventListener('click', function(event){
+      productSelector.style.display = 'flex';
+      productAdd.style.display = 'none';
+    })
+
+    productMinus.addEventListener('click', function(event){
+      var i = input.value;
+      if (i > 0) {
+        i--;
+        input.value = i;
+        quantityValue.innerText = input.value;
+      }
+    })
+
+    productPlus.addEventListener('click', function(event){
+      var i = input.value;
+      if (i >= 0 ) {
+        i++;
+        input.value = i;
+        quantityValue.innerText = input.value;
+      }
+    })
+
+    productConfirm.addEventListener('click', function(event){
+      productSelector.style.display = 'none';
+      productAdd.style.display = 'flex';
+      if (input.value >0){
+        onCart.innerHTML = input.value + '<i class="fa fa-check icon-xs icon-mauve" style="padding-right:0;padding-left:5px"></i>';
+        onCart.style.backgroundColor = '#F0EFFF';
+      } else {
+        onCart.innerHTML = '';
+        onCart.style.backgroundColor = '#FFFFFF';
+      }
+    })
+  })
+}
+
+function recettesFilters(){
+  var radioFiltersZone = document.querySelectorAll('.radio-filter-zone');
+  var radioFiltersUsage = document.querySelectorAll('.radio-filter-usage');
+  var activeFilters = {zone: 'Tout-zone', usage: 'Tout-usage'};
+  var products = document.querySelectorAll('.products-list--product');
+
+  radioFiltersZone.forEach(function(element){
+    element.addEventListener('change', function(event){
+      if (element.checked == true){
+        activeFilters.zone = element.value;
+      }
+      products.forEach(function(product){
+        product.style.display = 'none';
+        if (product.classList.contains(activeFilters.zone) && product.classList.contains(activeFilters.usage)){
+          product.style.display = 'flex';
+        }
+      })
+      console.log(activeFilters.zone);
+      console.log(activeFilters.usage);
+    })
+  })
+
+  radioFiltersUsage.forEach(function(element){
+    element.addEventListener('change', function(event){
+      if (element.checked == true){
+        activeFilters.usage = element.value;
+      }
+      products.forEach(function(product){
+        product.style.display = 'none';
+        if (product.classList.contains(activeFilters.zone) && product.classList.contains(activeFilters.usage)){
+          product.style.display = 'flex';
+        }
+      })
+      console.log(activeFilters);
+    })
+  })
+}
+
+function showHideFiltersMobile() {
+  var filtersBtn = document.querySelector('.filters--title');
+  var filtersElements = document.querySelector('.recettes--filters');
+  var icon = document.querySelector('.icon-to-rotate');
+
+  filtersBtn.addEventListener('click', function(event){
+    icon.classList.toggle('rotate');
+    filtersElements.classList.toggle('show-element');
+    filtersBtn.classList.toggle('border-radius');
+  })
+}
+
+function addProductsToCart(){
+  var products = document.querySelectorAll('.product');
+  var submit = document.querySelector('.form-submit');
+  var submitMobile = document.getElementById('btn-to-cart--mobile');
+  var popup = document.querySelector('.popup');
+  var popupBg = document.querySelector('.popup-bg');
+  var cart = document.querySelector('.order-products');
+  var submitOrder = document.getElementById('sumbit-order');
+  var price = 0;
+  var closeBtn = document.querySelector('.close-cart');
+
+  submit.addEventListener('click', function(event){
+    popup.style.display = "block";
+    products.forEach(function(product){
+      if(product.value > 0){
+        cart.insertAdjacentHTML('beforeend', '<div class="order-resume-product"><div class="order-resume-product-top"><p>' + product.name + '</p></div><div class="order-resume-product-bottom"><p>Quantités : ' + product.value + '</p><p>Prix : ' + product.value * product.title + ' €</p></div></div>');
+        price += parseFloat(product.title) * product.value;
+      }
+    })
+    cart.insertAdjacentHTML('beforeend', '<h4 style="padding: 20px 0 0 5px">Total de votre commande : ' + price + ' €</h4>');
+    submitOrder.value = 'Valider ma commander - ' + price + ' €'
+  })
+
+  submitMobile.addEventListener('click', function(event){
+    popup.style.display = "block";
+    products.forEach(function(product){
+      if(product.value > 0){
+        cart.insertAdjacentHTML('beforeend', '<div class="order-resume-product"><div class="order-resume-product-top"><p>' + product.name + '</p></div><div class="order-resume-product-bottom"><p>Quantités : ' + product.value + '</p><p>Prix : ' + product.value * product.title + ' €</p></div></div>');
+        price += parseFloat(product.title) * product.value;
+      }
+    })
+    cart.insertAdjacentHTML('beforeend', '<h4 style="padding: 20px 0 0 5px">Total de votre commande : ' + price + ' €</h4>');
+    submitOrder.value = 'Valider ma commander - ' + price + ' €'
+  })
+
+  products.forEach(function(product){
+    if (product.value > 0){
+      product.parentNode.parentNode.querySelector('.product---infos-oncart').innerHTML = product.value + '<i class="fa fa-check icon-xs icon-mauve" style="padding-right:0;padding-left:5px"></i>';
+      product.parentNode.parentNode.querySelector('.product---infos-oncart').style.backgroundColor = '#F0EFFF';
+    } else {
+      product.parentNode.parentNode.querySelector('.product---infos-oncart').innerHTML = '';
+      product.parentNode.parentNode.querySelector('.product---infos-oncart').style.backgroundColor = 'white';
+    }
+    product.addEventListener('change', function(event){
+      if (product.value > 0){
+        product.parentNode.parentNode.querySelector('.product---infos-oncart').innerHTML = product.value + '<i class="fa fa-check icon-xs icon-mauve" style="padding-right:0;padding-left:5px"></i>';
+        product.parentNode.parentNode.querySelector('.product---infos-oncart').style.backgroundColor = '#F0EFFF';
+      } else {
+        product.parentNode.parentNode.querySelector('.product---infos-oncart').innerHTML = '';
+        product.parentNode.parentNode.querySelector('.product---infos-oncart').style.backgroundColor = 'white';
+      }
+    })
+  })
+
+  closeBtn.addEventListener('click', function(event){
+    cart.innerHTML = '';
+    price = 0;
+    submitOrder.value = '';
+    popup.style.display = "none";
+  })
+
+  popupBg.addEventListener('click', function(event){
+    cart.innerHTML = '';
+    price = 0;
+    submitOrder.value = '';
+    popup.style.display = "none";
+  })
+
+  //sendEmail();
+  checkFormValidation();
+}
+
+function showAddressInfos(){
+  var addressForm = document.querySelector('.form-livraison');
+  var radioPoste = document.getElementById('livraison-poste');
+  var radioRemise = document.getElementById('livraison-remise');
+  var remise = document.querySelector('.form-remise');
+  remise.style.display = 'none';
+  radioPoste.addEventListener('change', function(event){
+    if (radioPoste.checked == true){
+      addressForm.style.display = 'block';
+      remise.style.display = 'none';
+    }
+  })
+  radioRemise.addEventListener('change', function(event){
+    if (radioRemise.checked == true){
+      addressForm.style.display = 'none';
+      remise.style.display = 'block';
+    }
+  })
+}
+
+function showContactInfos(){
+  var contactBtn = document.querySelector('.recettes--menu');
+  var contactInfos = document.querySelector('.recettes--menu-items');
+  var checkbox = document.getElementById('menu');
+  contactBtn.addEventListener('change', function(event){
+    if (checkbox.checked == true){
+      contactInfos.style.display = 'none';
+    } else {
+      contactInfos.style.display = 'block';
+    }
+  })
+}
+
+function checkFormValidation(){
+  var submitBtn = document.getElementById('sumbit-order');
+  var livraisonPoste = document.getElementById('livraison-poste');
+  var mandatoryInputs = document.querySelectorAll('.mandatory');
+  var mandatoryIfInputs = document.querySelectorAll('.mandatory-if');
+  var warning = document.querySelector('.warning');
+
+  submitBtn.addEventListener('click', function(event){
+  var i = 0;
+    if (livraisonPoste.checked) {
+      mandatoryInputs.forEach(function(element){
+        if (element.value == '') {
+          console.log('champ non rempli : ', element);
+          i--;
+        } else {
+          i++;
+        }
+        console.log('i', i)
+        if (i == 3){
+          console.log("le formulaire est ok... pour l'instant !")
+          mandatoryIfInputs.forEach(function(elem){
+            if (elem.value == '') {
+              console.log('champ non rempli : ', element);
+              i--;
+            } else {
+              i++;
+            }
+            console.log('i', i)
+            if (i == 6){
+              console.log('le formulaire est ok yeah !')
+              sendEmail();
+            } else {
+              console.log('il reste des champs à remplir')
+              warning.style.display = 'block';
+            }
+          })
+        } else {
+          console.log('le formulaire est pas du tout ok !!!')
+          warning.style.display = 'block';
+        }
+      })
+
+    } else {
+      mandatoryInputs.forEach(function(element){
+        if (element.value == '') {
+          console.log('champ non rempli : ', element);
+          i--;
+        } else {
+          i++;
+        }
+        if (i == 3){
+          console.log('le formulaire est ok');
+          sendEmail();
+        } else {
+          console.log('il reste des champs à remplir')
+          warning.style.display = 'block';
+        }
+      })
+    }
+  })
+}
+
+function sendEmail(fullOrder){
+  console.log('inside sending')
+  var fullOrder = [];
+  var loader = document.querySelector('.loader-container');
+  var elementsToHide = document.querySelector('.elements-to-hide');
+  var close = document.querySelector('.close-cart');
+  var livraisonRemise = document.getElementById('livraison-remise');
+  var livraisonPoste = document.getElementById('livraison-poste');
+
+  if (livraisonRemise.checked) {
+    var livraison = 'Remise en mains propres'
+  } else {
+    var livraison = 'Livraison postale'
+  }
+
+  loader.style.display = 'flex';
+  elementsToHide.style.display = 'none';
+  close.style.display ='none';
+
+  document.querySelectorAll('.order-resume-product').forEach(function(element){
+    var orderProductArray = [element.innerHTML.split('<p>')[1].replace('</p>',''), element.innerHTML.split('<p>')[2].replace('</p>','')];
+    fullOrder.push(orderProductArray);
+  })
+
+  var emailInfos = {
+    lastName : document.getElementById('name').value,
+    firstName : document.getElementById('firstname').value,
+    email : document.getElementById('email').value,
+    phone : document.getElementById('phone').value,
+    allergies : document.getElementById('allergies').value,
+    commentaires : document.getElementById('commentaires').value,
+    livraisonType : livraison,
+    livraisonRemise : document.getElementById('livraison-remise').value,
+    address : document.getElementById('address').value,
+    cp : document.getElementById('cp').value,
+    city : document.getElementById('city').value,
+    order : fullOrder
+  }
+
+  var emailBody = "<h2>Nouvelle commande de " + emailInfos.firstName + ' ' + emailInfos.lastName + "</h2><h4>Informations client :</h4><p>Nom : " + emailInfos.firstName + "</p><p>Prénom : " + emailInfos.lastName + "</p><p>Email : " + emailInfos.email + "</p><p>Téléphone : " + emailInfos.phone + "</p><p>Allergies : " + emailInfos.allergies + "</p><p>Commentaires : " + emailInfos.commentaires + "</p><p>Mode de livraison : " + emailInfos.livraisonType + "</p><p>Adresse : " + emailInfos.address +"</p><p>CP : " + emailInfos.cp + "</p><p>Ville : " + emailInfos.city + "</p><h4>Produits commandés : " + emailInfos.order + "</h4>"
+  var emailOrder = ''
+  console.log('emailBody', emailBody);
+  Email.send({
+    Host : "smtp.elasticemail.com",
+    Username : "thbrillet@gmail.com",
+    Password : "<%= ENV[“ELASTICEMAIL_PW”] =>",
+    To : 'mariearnaud.am@gmail.com',
+    From : "thbrillet@gmail.com",
+    Subject : "Nouvelle commande de " + emailInfos.firstName + ' ' + emailInfos.lastName,
+    Body : emailBody
+  }).then(
+    message => displayEndWindow(message)
+  );
+}
+
+function displayEndWindow(message){
+  var loader = document.querySelector('.loader-container');
+  var close = document.querySelector('.close-cart');
+  var elementsToHide = document.querySelector('.elements-to-hide');
+  var elementToShow = document.querySelector('.thanks');
+
+  loader.style.display = 'none';
+  elementsToHide.style.display = 'none';
+  elementToShow.style.display ='block';
+  close.style.display ='flex';
+}
+
+DomLoadedCM();
+
+$(document).ready(function(){
+  $('.mask-tel').inputmask({"mask": "99 99 99 99 99"}); //specifying options
+  $('.mask-cp').inputmask({"mask": "99 999"});
+});
