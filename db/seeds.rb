@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-#Recette.destroy_all
+Recette.destroy_all
 
 Recette.create!(
   name: "Gelée nettoyante à la Pomme - 100ml",
