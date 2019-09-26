@@ -58,39 +58,7 @@
       <div class="recettes--list-container">
         <% if @recettes.length > 0 %>
           <% @recettes.each do |recette|%>
-            <div class="products-list--product Tout-zone Tout-usage <%= recette.zone.delete('[').delete(']').delete('"').delete(',') %> <%= recette.usage.delete('[').delete(']').delete('"').delete(',') %>">
-              <div class="recette-name-tags">
-                <span><%= recette.name %></span>
-                <div class="recette-tag">
-                  <%= recette.zone.delete('[').delete(']').delete('"').delete(',') %>
-                </div>
-                <div class="recette-tag">
-                  <%= recette.usage.delete('[').delete(']').delete('"').delete(',') %>
-                </div>
-              </div>
-              <div class="product--infos">
-                <div class="product---infos-qtt">
-                  <input class="product product-quantity-input" type="number" name="<%= recette.name %>" value="0" min="0" max="10" title="<%= recette.price %>">
-                  <div class="product---infos-minus">
-                    <i class="far fa-minus"></i>
-                  </div>
-                  <div class="product---infos-qtt-value">0</div>
-                  <div class="product---infos-plus">
-                    <i class="far fa-plus"></i>
-                  </div>
-                  <div class="product---infos-confirm">
-                    <i class="far fa-check"></i>
-                  </div>
-                </div>
-                <div class="product---infos-add">
-                  <i class="fas fa-cart-plus icon-sm icon-blanc"></i>
-                </div>
-                <div style="display: flex;align-items: center;">
-                  <div class="product---infos-price"><%= recette.price %> €</div>
-                  <div class="product---infos-oncart"></div>
-                </div>
-              </div>
-            </div>
+            recette.price
           <% end %>
         <% end %>
       </div>
