@@ -65,7 +65,7 @@
                   <%= recette.zone %>
                 </div>
                 <div class="recette-tag">
-                  <%= recette.usage %>
+                  <%= recette.usage.gsub('[', '').gsub(']', '').gsub('"', '').gsub(',', '') %>
                 </div>
               </div>
               <div class="product--infos">
