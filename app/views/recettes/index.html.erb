@@ -58,11 +58,11 @@
       <div class="recettes--list-container">
         <% if @recettes.length > 0 %>
           <% @recettes.each do |recette|%>
-            <div class="products-list--product Tout-zone Tout-usage <%= recette.zone %> <%= recette.usage %>">
+            <div class="products-list--product Tout-zone Tout-usage <%= recette.zone.join(' ') %> <%= recette.usage.join(' ') %>">
               <div class="recette-name-tags">
                 <span><%= recette.name %></span>
                 <div class="recette-tag">
-                  <%= recette.zone %>
+                  <%= recette.zone.join(' ') %>
                 </div>
                 <div class="recette-tag">
                   <%= recette.usage.join(' ') %>
