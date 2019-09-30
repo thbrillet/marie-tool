@@ -155,31 +155,31 @@ Recette.create!(
   name: "Gelée exfoliante à l'Huile d'Olive - 50ml",
   price: 9,
   zone: ["Visage", "Corps"],
-  usage: ["Hydratant", "Nourrisant", "Exfoliant"]
+  usage: ["Hydratant", "Nourrissant", "Exfoliant"]
   )
 Recette.create!(
   name: "Gelée exfoliante à l'Huile d'Olive - 100ml",
   price: 16,
   zone: ["Visage", "Corps"],
-  usage: ["Hydratant", "Nourrisant", "Exfoliant"]
+  usage: ["Hydratant", "Nourrissant", "Exfoliant"]
   )
 Recette.create!(
   name: "Gelée exfoliante à l'Huile d'Olive - 200ml",
   price: 28,
   zone: ["Visage", "Corps"],
-  usage: ["Hydratant", "Nourrisant", "Exfoliant"]
+  usage: ["Hydratant", "Nourrissant", "Exfoliant"]
   )
 Recette.create!(
   name: "Démaquillant à l'Abricot - 100ml",
   price: 5,
   zone: ["Visage"],
-  usage: ["Nourrisant", "Lavant"]
+  usage: ["Nourrissant", "Lavant"]
   )
 Recette.create!(
   name: "Démaquillant à l'Abricot - 200ml",
   price: 9,
   zone: ["Visage"],
-  usage: ["Nourrisant", "Lavant"]
+  usage: ["Nourrissant", "Lavant"]
   )
 Recette.create!(
   name: "Eau tonique à la Mauve et au Tilleul - 100ml",
@@ -370,17 +370,17 @@ Recette.create!(
 Recette.create!(
   name: "Crème mains et pieds au Karité et à l'Aloe Vera - 50ml",
   price: 6,
-  zone: ["Corps"],
+  zone: ["Mains"],
   usage: ["Hydratant", "Nourrissant"]
   )
 Recette.create!(
   name: "Crème mains et pieds au Karité et à l'Aloe Vera - 100ml",
   price: 10,
-  zone: ["Corps"],
+  zone: ["Mains"],
   usage: ["Hydratant", "Nourrissant"]
   )
 Recette.create!(
-  name: "Huile sèche pailletée à la Vanille - 100ml",
+  name: "Huile corporelle pailletée à la Vanille - 100ml",
   price: 16,
   zone: ["Corps"],
   usage: ["Nourrissant"]
@@ -452,13 +452,13 @@ Recette.create!(
   usage: ["Hydratant"]
   )
 Recette.create!(
-  name: "Huile sèche à la Vanille - 50ml",
+  name: "Huile corporelle à la Vanille - 50ml",
   price: 10,
   zone: ["Cheveux"],
   usage: ["Nourrissant", "Protecteur"]
   )
 Recette.create!(
-  name: "Huile sèche à la Vanille - 100ml",
+  name: "Huile corporelle à la Vanille - 100ml",
   price: 18,
   zone: ["Cheveux"],
   usage: ["Nourrissant", "Protecteur"]
