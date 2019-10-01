@@ -3,6 +3,9 @@
     <div class="devise-container-left">
       <h2>Connexion</h2>
 
+      <% flash.each do |name, msg| %>
+          <%= content_tag :div, msg, id: "flash_#{name}", class: "flash-devise" %>
+      <% end %>
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="field">
           <%= f.label :email %><br />
@@ -27,7 +30,11 @@
       <% end %>
 
       <div class="devise-links">
-        <%= render "devise/shared/links" %>
+        <p>Vous souhaitez créer un compte pour utiliser l'application ?</p>
+        <p>Vous avez oublié votre mot de passe ?</p>
+        <p style="padding-top:10px">Contactez-moi directement :</p>
+        <p><a href="mailto:mariearnaud.am@gmail.com">mariearnaud.am@gmail.com</a></p>
+        <p><a href="tel:0770030540">07 70 03 05 40</a></p>
       </div>
     </div>
     <div class="devise-container-right">

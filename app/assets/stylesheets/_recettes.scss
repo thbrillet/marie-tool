@@ -437,3 +437,12 @@
   from   {top:20px;opacity: 0;}
   to     {top:5px;opacity: 1;}
 }
+
+.log-out {
+  text-align: center;
+  padding-top: 10px;
+  a {
+    font-size: 14px;
+    color: $main-color;
+  }
+}

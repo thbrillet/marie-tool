@@ -100,8 +100,11 @@
       </div>
       <button class="form-submit"><i class="fas fa-shopping-cart icon-blanc icon-sm"></i> Voir mon panier</button>
     </div>
-  </div
-></div>
+  </div>
+  <div class="log-out">
+    <%= link_to('Se déconnecter', destroy_user_session_path, method: :delete) %>
+  </div>
+</div>
 <div class="popup">
   <div class="popup-bg"></div>
   <div class="order-container">

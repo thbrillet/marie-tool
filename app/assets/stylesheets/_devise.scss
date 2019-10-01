@@ -77,6 +77,7 @@
   border-radius: 5px;
   background-color: #E7E6F6;
   margin-top: 20px;
+  font-size: 14px;
   a{
     color: $main-color;
     text-decoration: none;
@@ -86,4 +87,19 @@
 
 .devise-checkbox input{
   width: auto;
+}
+
+.flash-devise {
+  background-color: $red;
+  color: white;
+  font-size: 14px;
+  padding: 20px;
+  border-radius: 5px;
+  animation: zoomIn .5s forwards;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+@keyframes zoomIn {
+  from {transform: scale(0.5);opacity:0}
+  to {transform:scale(1);opacity:1}
 }
